@@ -104,14 +104,16 @@ const tasks = [
     },
   };
 
-  let lastSelectedTheme = 'default';
+  let lastSelectedTheme = localStorage.getItem('app theme') || 'default';
 
   // Elements UI
   const listContainer = document.querySelector('.tasks-list-section .list-group');
   const form = document.forms['addTask'];
   const inputTitle = form.elements['title'];
   const inputBody = form.elements['body'];
-  const select = document.querySelector('#themeSelect');
+  const themeSelect = document.querySelector('#themeSelect');
+
+  setTheme(lastSelectedTheme);
 
   //Events
   renderAllTasks(objOfTasks);
@@ -227,6 +229,7 @@ const tasks = [
     }
     setTheme(selectedTheme);
     lastSelectedTheme = selectedTheme;
+    localStorage.setItem('app theme', selectedTheme);
   }
 
   function setTheme(name) {
